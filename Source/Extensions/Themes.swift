@@ -39,6 +39,14 @@ extension Themes {
         error:   "#E44347"
     )
     
+    public static let Midnight = Theme(
+        trace:   "#FFFFFF",
+        debug:   "#527EFF",
+        info:    "#08FA95",
+        warning: "#EB905A",
+        error:   "#FF4647"
+    )
+    
     public static let Tomorrow = Theme(
         trace:   "#4D4D4C",
         debug:   "#4271AE",
