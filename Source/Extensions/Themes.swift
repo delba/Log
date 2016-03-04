@@ -31,6 +31,14 @@ extension Themes {
         error:   "#FF0000"
     )
     
+    public static let Dusk = Theme(
+        trace:   "#FFFFFF",
+        debug:   "#526EDA",
+        info:    "#93C96A",
+        warning: "#D28F5A",
+        error:   "#E44347"
+    )
+    
     public static let Tomorrow = Theme(
         trace:   "#4D4D4C",
         debug:   "#4271AE",
