@@ -6,7 +6,7 @@
     <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
-`Log` is a small yet powerful logging tool which provides built-in themes and formatters, and a nice API to define your owns.
+`Log` is a powerful logging tool that provides built-in themes and formatters, and a nice API to define your owns.
 
 > Get the most out of `Log` by installing [`XcodeColors`](https://github.com/robbiehanson/XcodeColors) and [`KZLinkedConsole`](https://github.com/krzysztofzablocki/KZLinkedConsole)
 
