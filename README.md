@@ -18,6 +18,8 @@ Log.warning(one, two, three, separator: " - ")
 Log.error(error, terminator: "😱😱😱\n")
 ```
 
+<img src="https://raw.githubusercontent.com/delba/Log/assets/a.png">
+
 - Disable `Log` by setting `enabled` to `false`:
 
 ```swift
@@ -66,6 +68,8 @@ Log.formatter = .Detailed
 Log.theme = .TomorrowNight
 ```
 
+<img src="https://raw.githubusercontent.com/delba/Log/assets/b.png">
+
 > See the built-in [formatters](https://github.com/delba/Log/blob/master/Source/Extensions/Formatters.swift) and [themes](https://github.com/delba/Log/blob/master/Source/Extensions/Themes.swift) for more examples.
 
 **Tip:** `Log.format` and `Log.colors` can be useful to visually debug your logger.
@@ -82,8 +86,14 @@ Log.theme = nil
 
 ```swift
 let Basic = Logger(formatter: .Default)
-let Short = Logger(formatter: .Minimal, theme: .Tomorrow, minLevel: .Info)
+let Short = Logger(
+    formatter: Formatter("%@: %@", .Level, .Message),
+    theme:     .TomorrowNightEighties,
+    minLevel:  .Info
+)
 ```
+
+<img src="https://raw.githubusercontent.com/delba/Log/assets/c.png">
 
 - Include a custom `Block` component in your formatter to print its result in every log message: 
 
