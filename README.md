@@ -4,8 +4,8 @@
     <a href="https://travis-ci.org/delba/Log"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Log.svg"/></a>
     <a href="https://img.shields.io/cocoapods/v/Log.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/Log.svg"/></a>
     <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
-</p>
-
+<a href="https://codebeat.co/projects/github-com-delba-log"><img alt="codebeat badge" src="https://codebeat.co/badges/cc7d96b9-2939-4b84-8dc7-0f55a31ab537" /></a> 
+</p> 
 `Log` is a powerful logging tool that provides built-in themes and formatters, and a nice API to define your owns.
 
 > Get the most out of `Log` by installing [`XcodeColors`](https://github.com/robbiehanson/XcodeColors) and [`KZLinkedConsole`](https://github.com/krzysztofzablocki/KZLinkedConsole)
