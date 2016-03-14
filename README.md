@@ -1,4 +1,6 @@
-<h1 align="center">Log</h1>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/delba/Log/assets/Logo@2x.png" />
+</p>
 
 <p align="center">
     <a href="https://travis-ci.org/delba/Log"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Log.svg"/></a>
