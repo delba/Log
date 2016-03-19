@@ -23,8 +23,6 @@
 - Use `Log` just as you would use `print`.
 
 ```swift
-import Log
-
 let Log = Logger()
 
 Log.trace("Called!!!")
