@@ -23,6 +23,10 @@
 - Use `Log` just as you would use `print`.
 
 ```swift
+import Log
+
+let Log = Logger()
+
 Log.trace("Called!!!")
 Log.debug("Who is self:", self)
 Log.info(some, objects, here)
@@ -76,8 +80,7 @@ extension Themes {
 ```
 
 ```swift
-Log.formatter = .Detailed
-Log.theme = .TomorrowNight
+let Log = Logger(formatter: .Detailed, theme: .TomorrowNight)
 ```
 
 <img src="https://raw.githubusercontent.com/delba/Log/assets/b.png">
@@ -86,18 +89,10 @@ Log.theme = .TomorrowNight
 
 **Tip:** `Log.format` and `Log.colors` can be useful to visually debug your logger.
 
-- Turn off the colors by setting the theme to `nil`:
+Nothing prevents you from creating as many loggers as you want!
 
 ```swift
-Log.theme = nil
-```
-
-#### Misc
-
-- Define as many loggers as you want: 
-
-```swift
-let Basic = Logger(formatter: .Default)
+let Basic = Logger(formatter: .Default, theme: nil)
 let Short = Logger(
     formatter: Formatter("%@: %@", .Level, .Message),
     theme:     .TomorrowNightEighties,
@@ -107,7 +102,15 @@ let Short = Logger(
 
 <img src="https://raw.githubusercontent.com/delba/Log/assets/c.png">
 
-- Include a custom `Block` component in your formatter to print its result in every log message: 
+- Turn off the colors by setting the theme to `nil`:
+
+```swift
+Log.theme = nil
+```
+
+#### Advanced
+
+Include a custom `Block` component in your formatter to print its result in every log message: 
 
 ```swift
 struct User {

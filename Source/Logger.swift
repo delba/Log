@@ -79,7 +79,7 @@ public class Logger {
      
      - returns: A newly created logger.
      */
-    public init(formatter: Formatter, theme: Theme? = nil, minLevel: Level = .Trace) {
+    public init(formatter: Formatter = .Default, theme: Theme? = .Default, minLevel: Level = .Trace) {
         self.formatter = formatter
         self.theme = theme
         self.minLevel = minLevel
@@ -196,5 +196,3 @@ public class Logger {
         }
     }
 }
-
-public let Log = Logger(formatter: .Default, theme: .Default)
