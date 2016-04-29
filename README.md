@@ -6,6 +6,7 @@
     <a href="https://travis-ci.org/delba/Log"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Log.svg"/></a>
     <a href="https://img.shields.io/cocoapods/v/Log.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/Log.svg"/></a>
     <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
+    <a href="https://img.shields.io/cocoapods/p/Log.svg"><img alt="Platform" src="https://img.shields.io/cocoapods/p/Log.svg"/></a>
 </p>
 
 `Log` is a powerful logging framework that provides built-in themes and formatters, and a nice API to define your owns.
