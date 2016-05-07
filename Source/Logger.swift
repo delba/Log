@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import Foundation
-
 private let benchmarker = Benchmarker()
 
 public enum Level {

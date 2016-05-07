@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import Foundation
-
 public class Themes {}
 
 public class Theme: Themes {

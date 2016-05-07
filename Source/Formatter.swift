@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import Foundation
-
 public enum Component {
     case Date(String)
     case Message
