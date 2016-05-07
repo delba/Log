@@ -50,11 +50,11 @@ public class Theme: Themes {
      */
     public init(trace: String, debug: String, info: String, warning: String, error: String) {
         self.colors = [
-            .Trace: Theme.formatHex(trace),
-            .Debug: Theme.formatHex(debug),
-            .Info: Theme.formatHex(info),
+            .Trace:   Theme.formatHex(trace),
+            .Debug:   Theme.formatHex(debug),
+            .Info:    Theme.formatHex(info),
             .Warning: Theme.formatHex(warning),
-            .Error: Theme.formatHex(error)
+            .Error:   Theme.formatHex(error)
         ]
     }
     
@@ -73,7 +73,7 @@ public class Theme: Themes {
         scanner.scanHexInt(&hex)
         
         let r = (hex & 0xFF0000) >> 16
-        let g = (hex & 0xFF00)  >> 8
+        let g = (hex & 0xFF00) >> 8
         let b = (hex & 0xFF)
         
         return [r, g, b].map({ String($0) }).joinWithSeparator(",")
