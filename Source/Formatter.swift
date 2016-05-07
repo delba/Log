@@ -124,6 +124,48 @@ public class Formatter: Formatters {
         
         return String(format: format, arguments: arguments) + terminator
     }
+    
+    /**
+     Formats a string with the formatter format and components.
+     
+     - parameter description:               The measure description.
+     - parameter average:                   The average time.
+     - parameter relativeStandardDeviation: The relative standard description.
+     - parameter file:                      The log file path.
+     - parameter line:                      The log line number.
+     - parameter column:                    The log column number.
+     - parameter function:                  The log function.
+     - parameter date:                      The log date.
+     
+     - returns: A formatted string.
+     */
+    func format(description description: String?, average: Double, relativeStandardDeviation: Double, file: String, line: Int, column: Int, function: String, date: NSDate) -> String {
+        
+        let arguments = components.map { (component: Component) -> CVarArgType in
+            switch component {
+            case .Date(let dateFormat):
+                return format(date: date, dateFormat: dateFormat)
+            case .File(let fullPath, let fileExtension):
+                return format(file: file, fullPath: fullPath, fileExtension: fileExtension)
+            case .Function:
+                return String(function)
+            case .Line:
+                return String(line)
+            case .Column:
+                return String(column)
+            case .Level:
+                return format(description: description)
+            case .Message:
+                return format(average: average, relativeStandardDeviation: relativeStandardDeviation)
+            case .Location:
+                return format(file: file, line: line)
+            case .Block(let block):
+                return block().flatMap({ String($0) }) ?? ""
+            }
+        }
+        
+        return String(format: format, arguments: arguments)
+    }
 }
 
 private extension Formatter {
@@ -188,6 +230,89 @@ private extension Formatter {
         }
         
         return text
+    }
+    
+    /**
+     Formats a measure description.
+     
+     - parameter description: The measure description.
+     
+     - returns: A formatted measure description.
+     */
+    func format(description description: String?) -> String {
+        var text = "MEASURE"
+        
+        if let color = logger.theme?.colors[.Debug] {
+            text = text.withColor(color)
+        }
+        
+        if let description = description {
+            text = "\(text) \(description)"
+        }
+        
+        return text
+    }
+    
+    /**
+     Formats an average time and a relative standard deviation.
+     
+     - parameter average:                   The average time.
+     - parameter relativeStandardDeviation: The relative standard deviation.
+     
+     - returns: A formatted average time and relative standard deviation.
+     */
+    func format(average average: Double, relativeStandardDeviation: Double) -> String {
+        let average = format(average: average)
+        let relativeStandardDeviation = format(relativeStandardDeviation: relativeStandardDeviation)
+        
+        return "Time: \(average) sec (\(relativeStandardDeviation) STDEV)"
+    }
+    
+    /**
+     Formats an average time.
+     
+     - parameter average: An average time.
+     
+     - returns: A formatted average time.
+     */
+    func format(average average: Double) -> String {
+        return String(format: "%.3f", average)
+    }
+    
+    /**
+     Formats a list of durations.
+     
+     - parameter durations: A list of durations.
+     
+     - returns: A formatted list of durations.
+     */
+    func format(durations durations: [Double]) -> String {
+        var format = Array(count: durations.count, repeatedValue: "%.6f").joinWithSeparator(", ")
+        format = "[\(format)]"
+        
+        return String(format: format, arguments: durations.map{ $0 as CVarArgType })
+    }
+    
+    /**
+     Formats a standard deviation.
+     
+     - parameter standardDeviation: A standard deviation.
+     
+     - returns: A formatted standard deviation.
+     */
+    func format(standardDeviation standardDeviation: Double) -> String {
+        return String(format: "%.6f", standardDeviation)
+    }
+    
+    /**
+     Formats a relative standard deviation.
+     
+     - parameter relativeStandardDeviation: A relative standard deviation.
+     
+     - returns: A formatted relative standard deviation.
+     */
+    func format(relativeStandardDeviation relativeStandardDeviation: Double) -> String {
+        return String(format: "%.3f%%", relativeStandardDeviation)
     }
 }
 

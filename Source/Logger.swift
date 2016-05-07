@@ -24,6 +24,8 @@
 
 import Foundation
 
+private let benchmarker = Benchmarker()
+
 public enum Level {
     case Trace, Debug, Info, Warning, Error
     
@@ -161,7 +163,7 @@ public class Logger {
     public func error(items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.Error, items, separator, terminator, file, line, column, function)
     }
-
+    
     /**
      Logs a message.
      
@@ -193,6 +195,40 @@ public class Logger {
         
         dispatch_async(queue) {
             Swift.print(result, separator: "", terminator: "")
+        }
+    }
+    
+    /**
+     Measures the performance of code.
+     
+     - parameter description: The measure description.
+     - parameter n:           The number of iterations.
+     - parameter file:        The file in which the measure happens.
+     - parameter line:        The line at which the measure happens.
+     - parameter column:      The column at which the measure happens.
+     - parameter function:    The function in which the measure happens.
+     - parameter block:       The block to measure.
+     */
+    public func measure(description: String? = nil, iterations n: Int = 10, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, block: () -> Void) {
+        guard enabled && .Debug >= minLevel else { return }
+        
+        let measure = benchmarker.measure(description, iterations: n, block: block)
+        
+        let date = NSDate()
+        
+        let result = formatter.format(
+            description: measure.description,
+            average: measure.average,
+            relativeStandardDeviation: measure.relativeStandardDeviation,
+            file: file,
+            line: line,
+            column: column,
+            function: function,
+            date: date
+        )
+        
+        dispatch_async(queue) {
+            Swift.print(result)
         }
     }
 }
