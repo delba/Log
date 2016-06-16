@@ -30,14 +30,14 @@ public class Theme: Themes {
     
     /// The theme textual representation.
     internal var description: String {
-        return colors.keys.sort().map {
-            $0.description.withColor(colors[$0]!)
-        }.joinWithSeparator(" ")
+        return colors.keys.sorted().map {
+            $0.description.withColor(color: colors[$0]!)
+        }.joined(separator: " ")
     }
     
     /**
      Creates and returns a theme with the specified colors.
-     
+
      - parameter trace:   The color for the trace level.
      - parameter debug:   The color for the debug level.
      - parameter info:    The color for the info level.
@@ -48,11 +48,11 @@ public class Theme: Themes {
      */
     public init(trace: String, debug: String, info: String, warning: String, error: String) {
         self.colors = [
-            .Trace:   Theme.formatHex(trace),
-            .Debug:   Theme.formatHex(debug),
-            .Info:    Theme.formatHex(info),
-            .Warning: Theme.formatHex(warning),
-            .Error:   Theme.formatHex(error)
+            .Trace:   Theme.formatHex(hex: trace),
+            .Debug:   Theme.formatHex(hex: debug),
+            .Info:    Theme.formatHex(hex: info),
+            .Warning: Theme.formatHex(hex: warning),
+            .Error:   Theme.formatHex(hex: error)
         ]
     }
     
@@ -64,16 +64,16 @@ public class Theme: Themes {
      - returns: A string representation of the hex color.
      */
     private static func formatHex(hex: String) -> String {
-        let scanner = NSScanner(string: hex)
+        let scanner = Scanner(string: hex)
         var hex: UInt32 = 0
         
-        scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "#")
-        scanner.scanHexInt(&hex)
+        scanner.charactersToBeSkipped = CharacterSet(charactersIn: "#")
+        scanner.scanHexInt32(&hex)
         
         let r = (hex & 0xFF0000) >> 16
         let g = (hex & 0xFF00) >> 8
         let b = (hex & 0xFF)
         
-        return [r, g, b].map({ String($0) }).joinWithSeparator(",")
+        return [r, g, b].map({ String($0) }).joined(separator: ",")
     }
 }

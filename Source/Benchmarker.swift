@@ -43,8 +43,8 @@ internal class Benchmarker {
         
         let durations = (0..<n).map { _ in duration { block() } }
         
-        let average = self.average(durations)
-        let standardDeviation = self.standardDeviation(average, durations: durations)
+        let average = self.average(durations: durations)
+        let standardDeviation = self.standardDeviation(average: average, durations: durations)
         let relativeStandardDeviation = standardDeviation * average * 100
         
         return (
