@@ -30,7 +30,7 @@ internal extension String {
     
     /// A new string made by deleting the extension from the receiver.
     var stringByDeletingPathExtension: String {
-        return NSString(string: self).stringByDeletingPathExtension
+        return NSString(string: self).deletingPathExtension
     }
     
     /**
