@@ -23,15 +23,15 @@
 //
 
 public enum Component {
-    case Date(String)
-    case Message
-    case Level
-    case File(fullPath: Bool, fileExtension: Bool)
-    case Line
-    case Column
-    case Function
-    case Location
-    case Block(() -> Any?)
+    case date(String)
+    case message
+    case level
+    case file(fullPath: Bool, fileExtension: Bool)
+    case line
+    case column
+    case function
+    case location
+    case block(() -> Any?)
 }
 
 public class Formatters {}
@@ -44,15 +44,15 @@ public class Formatter: Formatters {
     private var components: [Component]
     
     /// The date formatter.
-    private let dateFormatter = NSDateFormatter()
+    private let dateFormatter = DateFormatter()
     
     /// The formatter logger.
     internal weak var logger: Logger!
     
     /// The formatter textual representation.
     internal var description: String {
-        return String(format: format, arguments: components.map { (component: Component) -> CVarArgType in
-            return String(component).uppercaseString
+        return String(format: format, arguments: components.map { (component: Component) -> CVarArg in
+            return String(component).uppercased()
         })
     }
     
@@ -96,26 +96,26 @@ public class Formatter: Formatters {
      
      - returns: A formatted string.
      */
-    internal func format(level level: Level, items: [Any], separator: String, terminator: String, file: String, line: Int, column: Int, function: String, date: NSDate) -> String {
-        let arguments = components.map { (component: Component) -> CVarArgType in
+    internal func format(level: Level, items: [Any], separator: String, terminator: String, file: String, line: Int, column: Int, function: String, date: Date) -> String {
+        let arguments = components.map { (component: Component) -> CVarArg in
             switch component {
-            case .Date(let dateFormat):
+            case .date(let dateFormat):
                 return format(date: date, dateFormat: dateFormat)
-            case .File(let fullPath, let fileExtension):
+            case .file(let fullPath, let fileExtension):
                 return format(file: file, fullPath: fullPath, fileExtension: fileExtension)
-            case .Function:
+            case .function:
                 return String(function)
-            case .Line:
+            case .line:
                 return String(line)
-            case .Column:
+            case .column:
                 return String(column)
-            case .Level:
+            case .level:
                 return format(level: level)
-            case .Message:
-                return items.map({ String($0) }).joinWithSeparator(separator)
-            case .Location:
+            case .message:
+                return items.map({ String($0) }).joined(separator: separator)
+            case .location:
                 return format(file: file, line: line)
-            case .Block(let block):
+            case .block(let block):
                 return block().flatMap({ String($0) }) ?? ""
             }
         }
@@ -137,27 +137,27 @@ public class Formatter: Formatters {
      
      - returns: A formatted string.
      */
-    func format(description description: String?, average: Double, relativeStandardDeviation: Double, file: String, line: Int, column: Int, function: String, date: NSDate) -> String {
+    func format(description: String?, average: Double, relativeStandardDeviation: Double, file: String, line: Int, column: Int, function: String, date: Date) -> String {
         
-        let arguments = components.map { (component: Component) -> CVarArgType in
+        let arguments = components.map { (component: Component) -> CVarArg in
             switch component {
-            case .Date(let dateFormat):
+            case .date(let dateFormat):
                 return format(date: date, dateFormat: dateFormat)
-            case .File(let fullPath, let fileExtension):
+            case .file(let fullPath, let fileExtension):
                 return format(file: file, fullPath: fullPath, fileExtension: fileExtension)
-            case .Function:
+            case .function:
                 return String(function)
-            case .Line:
+            case .line:
                 return String(line)
-            case .Column:
+            case .column:
                 return String(column)
-            case .Level:
+            case .level:
                 return format(description: description)
-            case .Message:
+            case .message:
                 return format(average: average, relativeStandardDeviation: relativeStandardDeviation)
-            case .Location:
+            case .location:
                 return format(file: file, line: line)
-            case .Block(let block):
+            case .block(let block):
                 return block().flatMap({ String($0) }) ?? ""
             }
         }
@@ -175,9 +175,9 @@ private extension Formatter {
      
      - returns: A formatted date.
      */
-    func format(date date: NSDate, dateFormat: String) -> String {
+    func format(date: Date, dateFormat: String) -> String {
         dateFormatter.dateFormat = dateFormat
-        return dateFormatter.stringFromDate(date)
+        return dateFormatter.string(from: date)
     }
     
     /**
@@ -189,7 +189,7 @@ private extension Formatter {
      
      - returns: A formatted file path.
      */
-    func format(file file: String, fullPath: Bool, fileExtension: Bool) -> String {
+    func format(file: String, fullPath: Bool, fileExtension: Bool) -> String {
         var file = file
         
         if !fullPath      { file = file.lastPathComponent }
@@ -206,11 +206,11 @@ private extension Formatter {
      
      - returns: A formatted Location component.
      */
-    func format(file file: String, line: Int) -> String {
+    func format(file: String, line: Int) -> String {
         return [
             format(file: file, fullPath: false, fileExtension: true),
             String(line)
-        ].joinWithSeparator(":")
+        ].joined(separator: ":")
     }
     
     /**
@@ -220,7 +220,7 @@ private extension Formatter {
      
      - returns: A formatted Level component.
      */
-    func format(level level: Level) -> String {
+    func format(level: Level) -> String {
         let text = level.description
         
         if let color = logger.theme?.colors[level] {
@@ -237,10 +237,10 @@ private extension Formatter {
      
      - returns: A formatted measure description.
      */
-    func format(description description: String?) -> String {
+    func format(description: String?) -> String {
         var text = "MEASURE"
         
-        if let color = logger.theme?.colors[.Debug] {
+        if let color = logger.theme?.colors[.debug] {
             text = text.withColor(color)
         }
         
@@ -259,7 +259,7 @@ private extension Formatter {
      
      - returns: A formatted average time and relative standard deviation.
      */
-    func format(average average: Double, relativeStandardDeviation: Double) -> String {
+    func format(average: Double, relativeStandardDeviation: Double) -> String {
         let average = format(average: average)
         let relativeStandardDeviation = format(relativeStandardDeviation: relativeStandardDeviation)
         
@@ -273,7 +273,7 @@ private extension Formatter {
      
      - returns: A formatted average time.
      */
-    func format(average average: Double) -> String {
+    func format(average: Double) -> String {
         return String(format: "%.3f", average)
     }
     
@@ -284,11 +284,11 @@ private extension Formatter {
      
      - returns: A formatted list of durations.
      */
-    func format(durations durations: [Double]) -> String {
-        var format = Array(count: durations.count, repeatedValue: "%.6f").joinWithSeparator(", ")
+    func format(durations: [Double]) -> String {
+        var format = Array(repeating: "%.6f", count: durations.count).joined(separator: ", ")
         format = "[\(format)]"
         
-        return String(format: format, arguments: durations.map{ $0 as CVarArgType })
+        return String(format: format, arguments: durations.map{ $0 as CVarArg })
     }
     
     /**
@@ -298,7 +298,7 @@ private extension Formatter {
      
      - returns: A formatted standard deviation.
      */
-    func format(standardDeviation standardDeviation: Double) -> String {
+    func format(standardDeviation: Double) -> String {
         return String(format: "%.6f", standardDeviation)
     }
     
@@ -309,7 +309,7 @@ private extension Formatter {
      
      - returns: A formatted relative standard deviation.
      */
-    func format(relativeStandardDeviation relativeStandardDeviation: Double) -> String {
+    func format(relativeStandardDeviation: Double) -> String {
         return String(format: "%.3f%%", relativeStandardDeviation)
     }
 }
