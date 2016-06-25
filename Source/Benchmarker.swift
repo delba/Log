@@ -38,7 +38,7 @@ internal class Benchmarker {
      
      - returns: The measure result.
      */
-    func measure(description: String? = nil, iterations n: Int = 10, block: () -> Void) -> Result {
+    func measure(_ description: String? = nil, iterations n: Int = 10, block: () -> Void) -> Result {
         precondition(n >= 1, "Iteration must be greater or equal to 1.")
         
         let durations = (0..<n).map { _ in duration { block() } }
@@ -54,19 +54,19 @@ internal class Benchmarker {
         )
     }
     
-    private func duration(block: () -> Void) -> Double {
-        let date = NSDate()
+    private func duration(_ block: () -> Void) -> Double {
+        let date = Date()
         
         block()
         
         return abs(date.timeIntervalSinceNow)
     }
     
-    private func average(durations: [Double]) -> Double {
+    private func average(_ durations: [Double]) -> Double {
         return durations.reduce(0, combine: +) / Double(durations.count)
     }
     
-    private func standardDeviation(average: Double, durations: [Double]) -> Double {
+    private func standardDeviation(_ average: Double, durations: [Double]) -> Double {
         return durations.reduce(0) { sum, duration in
             return sum + pow(duration - average, 2)
         }

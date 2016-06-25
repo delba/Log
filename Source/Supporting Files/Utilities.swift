@@ -30,7 +30,7 @@ internal extension String {
     
     /// A new string made by deleting the extension from the receiver.
     var stringByDeletingPathExtension: String {
-        return NSString(string: self).stringByDeletingPathExtension
+        return NSString(string: self).deletingPathExtension
     }
     
     /**
@@ -40,7 +40,7 @@ internal extension String {
      
      - returns: A string colored with the specified color.
      */
-    func withColor(color: String) -> String {
+    func withColor(_ color: String) -> String {
         return "\u{001b}[fg\(color);\(self)\u{001b}[;"
     }
 }
