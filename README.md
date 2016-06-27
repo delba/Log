@@ -121,6 +121,14 @@ struct User {
 Log.formatter = Formatter("[%@] %@: %@", .Block(User.token), .Level, .Message)
 ```
 
+#### Benchmarking
+
+```swift
+Log.measure {
+    // Some brutal fizzbuzz here
+}
+```
+
 ## Installation
 
 ### Carthage
