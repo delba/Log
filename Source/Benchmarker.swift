@@ -63,7 +63,7 @@ internal class Benchmarker {
     }
     
     private func average(_ durations: [Double]) -> Double {
-        return durations.reduce(0, combine: +) / Double(durations.count)
+        return durations.reduce(0, +) / Double(durations.count)
     }
     
     private func standardDeviation(_ average: Double, durations: [Double]) -> Double {
