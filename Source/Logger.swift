@@ -68,7 +68,7 @@ public class Logger {
     }
     
     /// The queue used for logging.
-    private let queue = DispatchQueue(label: "delba.log", attributes: DispatchQueueAttributes.serial)
+    private let queue = DispatchQueue(label: "delba.log")
     
     /**
      Creates and returns a new logger.
