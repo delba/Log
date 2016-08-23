@@ -42,7 +42,7 @@ public func <(x: Level, y: Level) -> Bool {
     return x.hashValue < y.hashValue
 }
 
-public class Logger {
+open class Logger {
     /// The logger state.
     public var enabled: Bool = true
     
