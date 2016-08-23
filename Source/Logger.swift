@@ -79,7 +79,7 @@ public class Logger {
      
      - returns: A newly created logger.
      */
-    public init(formatter: Formatter = .Default, theme: Theme? = nil, minLevel: Level = .trace) {
+    open init(formatter: Formatter = .Default, theme: Theme? = nil, minLevel: Level = .trace) {
         self.formatter = formatter
         self.theme = theme
         self.minLevel = minLevel
@@ -98,7 +98,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func trace(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func trace(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.trace, items, separator, terminator, file, line, column, function)
     }
     
@@ -113,7 +113,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.debug, items, separator, terminator, file, line, column, function)
     }
     
@@ -128,7 +128,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func info(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func info(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.info, items, separator, terminator, file, line, column, function)
     }
     
@@ -143,7 +143,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func warning(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func warning(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.warning, items, separator, terminator, file, line, column, function)
     }
     
@@ -158,7 +158,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func error(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func error(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.error, items, separator, terminator, file, line, column, function)
     }
     
@@ -207,7 +207,7 @@ public class Logger {
      - parameter function:    The function in which the measure happens.
      - parameter block:       The block to measure.
      */
-    public func measure(_ description: String? = nil, iterations n: Int = 10, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, block: () -> Void) {
+    open func measure(_ description: String? = nil, iterations n: Int = 10, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, block: () -> Void) {
         guard enabled && .debug >= minLevel else { return }
         
         let measure = benchmarker.measure(description, iterations: n, block: block)
