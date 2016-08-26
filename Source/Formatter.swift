@@ -44,7 +44,7 @@ public class Formatter: Formatters {
     private var components: [Component]
     
     /// The date formatter.
-    private let dateFormatter = DateFormatter()
+    fileprivate let dateFormatter = DateFormatter()
     
     /// The formatter logger.
     internal weak var logger: Logger!
@@ -52,7 +52,7 @@ public class Formatter: Formatters {
     /// The formatter textual representation.
     internal var description: String {
         return String(format: format, arguments: components.map { (component: Component) -> CVarArg in
-            return String(component).uppercased()
+            return String(describing: component).uppercased()
         })
     }
     
@@ -112,11 +112,11 @@ public class Formatter: Formatters {
             case .level:
                 return format(level: level)
             case .message:
-                return items.map({ String($0) }).joined(separator: separator)
+                return items.map({ String(describing: $0) }).joined(separator: separator)
             case .location:
                 return format(file: file, line: line)
             case .block(let block):
-                return block().flatMap({ String($0) }) ?? ""
+                return block().flatMap({ String(describing: $0) }) ?? ""
             }
         }
         
@@ -158,7 +158,7 @@ public class Formatter: Formatters {
             case .location:
                 return format(file: file, line: line)
             case .block(let block):
-                return block().flatMap({ String($0) }) ?? ""
+                return block().flatMap({ String(describing: $0) }) ?? ""
             }
         }
         

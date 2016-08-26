@@ -28,7 +28,7 @@ public enum Level {
     case trace, debug, info, warning, error
     
     var description: String {
-        return String(self).uppercased()
+        return String(describing: self).uppercased()
     }
 }
 
