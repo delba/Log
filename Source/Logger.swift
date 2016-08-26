@@ -98,7 +98,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func trace(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func trace(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.trace, items, separator, terminator, file, line, column, function)
     }
     
@@ -113,7 +113,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.debug, items, separator, terminator, file, line, column, function)
     }
     
@@ -128,7 +128,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func info(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func info(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.info, items, separator, terminator, file, line, column, function)
     }
     
@@ -143,7 +143,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func warning(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func warning(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.warning, items, separator, terminator, file, line, column, function)
     }
     
@@ -158,7 +158,7 @@ public class Logger {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    public func error(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
+    open func error(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         log(.error, items, separator, terminator, file, line, column, function)
     }
     
