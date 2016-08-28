@@ -44,10 +44,10 @@ Log.enabled = false
 - Define a minimum level of severity to only print the messages with a greater or equal severity:
 
 ```swift
-Log.minLevel = .Warning
+Log.minLevel = .warning
 ```
 
-> The severity levels are `Trace`, `Debug`, `Info`, `Warning`, and `Error`.
+> The severity levels are `trace`, `debug`, `info`, `warning`, and `error`.
 
 #### Customization
 
@@ -57,18 +57,18 @@ A suggested way of doing it is by extending `Formatters` and `Themes`:
 
 ```swift
 extension Formatters {
-    static let Detailed = Formatter("[%@] %@.%@:%@ %@: %@", [
-        .Date("yyyy-MM-dd HH:mm:ss.SSS"),
-        .File(fullPath: false, fileExtension: false),
-        .Function,
-        .Line,
-        .Level,
-        .Message
+    static let detailed = Formatter("[%@] %@.%@:%@ %@: %@", [
+        .date("yyyy-MM-dd HH:mm:ss.SSS"),
+        .file(fullPath: false, fileExtension: false),
+        .function,
+        .line,
+        .level,
+        .message
     ])
 }
 
 extension Themes {
-    static let TomorrowNight = Theme(
+    static let tomorrowNight = Theme(
         trace:   "#C5C8C6",
         debug:   "#81A2BE",
         info:    "#B5BD68",
@@ -79,7 +79,7 @@ extension Themes {
 ```
 
 ```swift
-let Log = Logger(formatter: .Detailed, theme: .TomorrowNight)
+let Log = Logger(formatter: .detailed, theme: .tomorrowNight)
 ```
 
 <img src="https://raw.githubusercontent.com/delba/Log/assets/b.png">
@@ -91,11 +91,11 @@ let Log = Logger(formatter: .Detailed, theme: .TomorrowNight)
 Nothing prevents you from creating as many loggers as you want!
 
 ```swift
-let Basic = Logger(formatter: .Default, theme: nil)
+let Basic = Logger(formatter: .default, theme: nil)
 let Short = Logger(
-    formatter: Formatter("%@: %@", .Level, .Message),
-    theme:     .TomorrowNightEighties,
-    minLevel:  .Info
+    formatter: Formatter("%@: %@", .level, .message),
+    theme:     .tomorrowNightEighties,
+    minLevel:  .info
 )
 ```
 
@@ -118,7 +118,7 @@ struct User {
     }
 }
 
-Log.formatter = Formatter("[%@] %@: %@", .Block(User.token), .Level, .Message)
+Log.formatter = Formatter("[%@] %@: %@", .block(User.token), .level, .message)
 ```
 
 ## Installation
