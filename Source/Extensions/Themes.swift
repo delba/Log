@@ -23,7 +23,7 @@
 //
 
 extension Themes {
-    public static let Default = Theme(
+    public static let `default` = Theme(
         trace:   "#C8C8C8",
         debug:   "#0000FF",
         info:    "#00FF00",
@@ -31,7 +31,7 @@ extension Themes {
         error:   "#FF0000"
     )
     
-    public static let Dusk = Theme(
+    public static let dusk = Theme(
         trace:   "#FFFFFF",
         debug:   "#526EDA",
         info:    "#93C96A",
@@ -39,7 +39,7 @@ extension Themes {
         error:   "#E44347"
     )
     
-    public static let Midnight = Theme(
+    public static let midnight = Theme(
         trace:   "#FFFFFF",
         debug:   "#527EFF",
         info:    "#08FA95",
@@ -47,7 +47,7 @@ extension Themes {
         error:   "#FF4647"
     )
     
-    public static let Tomorrow = Theme(
+    public static let tomorrow = Theme(
         trace:   "#4D4D4C",
         debug:   "#4271AE",
         info:    "#718C00",
@@ -55,7 +55,7 @@ extension Themes {
         error:   "#C82829"
     )
     
-    public static let TomorrowNight = Theme(
+    public static let tomorrowNight = Theme(
         trace:   "#C5C8C6",
         debug:   "#81A2BE",
         info:    "#B5BD68",
@@ -63,7 +63,7 @@ extension Themes {
         error:   "#CC6666"
     )
     
-    public static let TomorrowNightEighties = Theme(
+    public static let tomorrowNightEighties = Theme(
         trace:   "#CCCCCC",
         debug:   "#6699CC",
         info:    "#99CC99",
@@ -71,7 +71,7 @@ extension Themes {
         error:   "#F2777A"
     )
     
-    public static let TomorrowNightBright = Theme(
+    public static let tomorrowNightBright = Theme(
         trace:   "#EAEAEA",
         debug:   "#7AA6DA",
         info:    "#B9CA4A",
