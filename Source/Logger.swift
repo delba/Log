@@ -79,7 +79,7 @@ open class Logger {
      
      - returns: A newly created logger.
      */
-    public init(formatter: Formatter = .Default, theme: Theme? = nil, minLevel: Level = .trace) {
+    public init(formatter: Formatter = .default, theme: Theme? = nil, minLevel: Level = .trace) {
         self.formatter = formatter
         self.theme = theme
         self.minLevel = minLevel
