@@ -222,11 +222,18 @@ private extension Formatter {
      */
     func format(level: Level) -> String {
         let text = level.description
-        
-        if let color = logger.theme?.colors[level] {
-            return text.withColor(color)
+
+        if let style = logger.theme.style(for: level) {
+
+            var string = style.emoji + text
+
+            if let color = style.color {
+                string = string.withColor(color)
+            }
+
+            return string
         }
-        
+
         return text
     }
     
@@ -239,11 +246,14 @@ private extension Formatter {
      */
     func format(description: String?) -> String {
         var text = "MEASURE"
-        
-        if let color = logger.theme?.colors[.debug] {
-            text = text.withColor(color)
+
+        if let style = logger.theme.style(for: .debug) {
+
+            text = style.emoji + text
+            if let color = style.color {
+                text = text.withColor(color)
+            }
         }
-        
         if let description = description {
             text = "\(text) \(description)"
         }

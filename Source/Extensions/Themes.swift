@@ -24,58 +24,66 @@
 
 extension Themes {
     public static let `default` = Theme(
-        trace:   "#C8C8C8",
-        debug:   "#0000FF",
-        info:    "#00FF00",
-        warning: "#FFFB00",
-        error:   "#FF0000"
+        trace:   Theme.Style(color: "#C8C8C8"),
+        debug:   Theme.Style(color: "#0000FF"),
+        info:    Theme.Style(color: "#00FF00"),
+        warning: Theme.Style(color: "#FFFB00"),
+        error:   Theme.Style(color: "#FF0000")
     )
     
     public static let dusk = Theme(
-        trace:   "#FFFFFF",
-        debug:   "#526EDA",
-        info:    "#93C96A",
-        warning: "#D28F5A",
-        error:   "#E44347"
+        trace:   Theme.Style(color: "#FFFFFF"),
+        debug:   Theme.Style(color: "#526EDA"),
+        info:    Theme.Style(color: "#93C96A"),
+        warning: Theme.Style(color: "#D28F5A"),
+        error:   Theme.Style(color: "#E44347")
     )
     
     public static let midnight = Theme(
-        trace:   "#FFFFFF",
-        debug:   "#527EFF",
-        info:    "#08FA95",
-        warning: "#EB905A",
-        error:   "#FF4647"
+        trace:   Theme.Style(color: "#FFFFFF"),
+        debug:   Theme.Style(color: "#527EFF"),
+        info:    Theme.Style(color: "#08FA95"),
+        warning: Theme.Style(color: "#EB905A"),
+        error:   Theme.Style(color: "#FF4647")
     )
     
     public static let tomorrow = Theme(
-        trace:   "#4D4D4C",
-        debug:   "#4271AE",
-        info:    "#718C00",
-        warning: "#EAB700",
-        error:   "#C82829"
+        trace:   Theme.Style(color: "#4D4D4C"),
+        debug:   Theme.Style(color: "#4271AE"),
+        info:    Theme.Style(color: "#718C00"),
+        warning: Theme.Style(color: "#EAB700"),
+        error:   Theme.Style(color: "#C82829")
     )
     
     public static let tomorrowNight = Theme(
-        trace:   "#C5C8C6",
-        debug:   "#81A2BE",
-        info:    "#B5BD68",
-        warning: "#F0C674",
-        error:   "#CC6666"
+        trace:   Theme.Style(color: "#C5C8C6"),
+        debug:   Theme.Style(color: "#81A2BE"),
+        info:    Theme.Style(color: "#B5BD68"),
+        warning: Theme.Style(color: "#F0C674"),
+        error:   Theme.Style(color: "#CC6666")
     )
     
     public static let tomorrowNightEighties = Theme(
-        trace:   "#CCCCCC",
-        debug:   "#6699CC",
-        info:    "#99CC99",
-        warning: "#FFCC66",
-        error:   "#F2777A"
+        trace:   Theme.Style(color: "#CCCCCC"),
+        debug:   Theme.Style(color: "#6699CC"),
+        info:    Theme.Style(color: "#99CC99"),
+        warning: Theme.Style(color: "#FFCC66"),
+        error:   Theme.Style(color: "#F2777A")
     )
     
     public static let tomorrowNightBright = Theme(
-        trace:   "#EAEAEA",
-        debug:   "#7AA6DA",
-        info:    "#B9CA4A",
-        warning: "#E7C547",
-        error:   "#D54E53"
+        trace:   Theme.Style(color: "#EAEAEA"),
+        debug:   Theme.Style(color: "#7AA6DA"),
+        info:    Theme.Style(color: "#B9CA4A"),
+        warning: Theme.Style(color: "#E7C547"),
+        error:   Theme.Style(color: "#D54E53")
+    )
+
+    public static let emojiHearts = Theme(
+        trace: Theme.Style(emoji: "💚"),
+        debug: Theme.Style(emoji: "🖤"),
+        info: Theme.Style(emoji: "💙"),
+        warning: Theme.Style(emoji: "💛"),
+        error: Theme.Style(emoji: "❤️")
     )
 }
