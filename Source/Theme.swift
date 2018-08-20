@@ -25,13 +25,56 @@
 public class Themes {}
 
 public class Theme: Themes {
-    /// The theme colors.
-    internal var colors: [Level: String]
-    
+
+    /// Style object to hold color and emoji for each level.
+    public struct Style {
+
+        /// Color for the syyle.
+        public let color: String?
+        /// Emoji for the style.
+        public let emoji: String
+
+        /**
+         Creates and returns a style with the specified color or/and emoji.
+
+         - parameter coloe:   The color for the style.
+         - parameter debug:   The emoji for the style.
+
+         - returns: A style with the specified color or/and emoji.
+         */
+        public init(color: String? = nil, emoji: String? = nil) {
+
+            self.color = color
+            if let emoji = emoji {
+                self.emoji = emoji + " "
+            } else {
+                self.emoji = ""
+            }
+        }
+    }
+
+    /// The theme styles.
+    private var styles: [Level: Style]
+
+    /**
+     Returns style for the specified level.
+
+     - parameter level:   The level for which style needs to be selected.
+
+     - returns: A style for specific level.
+     */
+    internal func style(for level: Level) -> Style? {
+        return styles[level]
+    }
+
     /// The theme textual representation.
     internal var description: String {
-        return colors.keys.sorted().map {
-            $0.description.withColor(colors[$0]!)
+        return styles.keys.sorted().map {
+            var string = (styles[$0]?.emoji ?? "") + $0.description
+            if let color = styles[$0]?.color {
+                string = string.withColor(color)
+            }
+            return string
         }.joined(separator: " ")
     }
     
@@ -45,17 +88,49 @@ public class Theme: Themes {
      - parameter error:   The color for the error level.
      
      - returns: A theme with the specified colors.
+
+     - note: Deprecated. Use `init( trace: Style, debug: Style, info: Style, warning: Style, error: Style)` instead.
      */
+    @available(*, deprecated)
     public init(trace: String, debug: String, info: String, warning: String, error: String) {
-        self.colors = [
-            .trace:   Theme.formatHex(trace),
-            .debug:   Theme.formatHex(debug),
-            .info:    Theme.formatHex(info),
-            .warning: Theme.formatHex(warning),
-            .error:   Theme.formatHex(error)
+
+        self.styles = [
+            .trace:   Style(color: Theme.formatHex(trace)),
+            .debug:   Style(color: Theme.formatHex(debug)),
+            .info:    Style(color: Theme.formatHex(info)),
+            .warning: Style(color: Theme.formatHex(warning)),
+            .error:   Style(color: Theme.formatHex(error))
         ]
     }
-    
+
+    /**
+     Creates and returns a theme with the specified styles.
+
+     - parameter trace:   The style for the trace level.
+     - parameter debug:   The style for the debug level.
+     - parameter info:    The style for the info level.
+     - parameter warning: The style for the warning level.
+     - parameter error:   The style for the error level.
+
+     - returns: A theme with the specified styles.
+     */
+    public init(
+        trace: Style,
+        debug: Style,
+        info: Style,
+        warning: Style,
+        error: Style
+        ) {
+
+        self.styles = [
+            .trace: trace,
+            .debug: debug,
+            .info: info,
+            .warning: warning,
+            .error: error
+        ]
+    }
+
     /**
      Returns a string representation of the hex color.
      
