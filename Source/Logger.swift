@@ -24,7 +24,7 @@
 
 private let benchmarker = Benchmarker()
 
-public enum Level {
+public enum Level: Int {
     case trace, debug, info, warning, error
     
     var description: String {
@@ -175,7 +175,7 @@ open class Logger {
      - parameter function:   The function in which the log happens.
      */
     private func log(_ level: Level, _ items: [Any], _ separator: String, _ terminator: String, _ file: String, _ line: Int, _ column: Int, _ function: String) {
-        guard enabled && level >= minLevel else { return }
+        guard enabled && level.rawValue >= minLevel.rawValue else { return }
         
         let date = Date()
         
@@ -208,7 +208,7 @@ open class Logger {
      - parameter block:       The block to measure.
      */
     public func measure(_ description: String? = nil, iterations n: Int = 10, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, block: () -> Void) {
-        guard enabled && .debug >= minLevel else { return }
+        guard enabled && Level.debug.rawValue >= minLevel.rawValue else { return }
         
         let measure = benchmarker.measure(description, iterations: n, block: block)
         
