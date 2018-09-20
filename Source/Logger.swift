@@ -24,7 +24,7 @@
 
 private let benchmarker = Benchmarker()
 
-public enum Level {
+public enum Level: Int {
     case trace, debug, info, warning, error
     
     var description: String {
@@ -35,11 +35,11 @@ public enum Level {
 extension Level: Comparable {}
 
 public func ==(x: Level, y: Level) -> Bool {
-    return x.hashValue == y.hashValue
+    return x.rawValue == y.rawValue
 }
 
 public func <(x: Level, y: Level) -> Bool {
-    return x.hashValue < y.hashValue
+    return x.rawValue < y.rawValue
 }
 
 open class Logger {
