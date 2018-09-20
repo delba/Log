@@ -24,7 +24,7 @@
 
 private let benchmarker = Benchmarker()
 
-public enum Level {
+public enum Level: Int {
     case trace, debug, info, warning, error
     
     var description: String {
