@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import Foundation
+
 internal extension String {
     /// The last path component of the receiver.
     var lastPathComponent: String {
