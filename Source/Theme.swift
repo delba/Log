@@ -47,7 +47,7 @@ open class Theme: Themes {
      - returns: A theme with the specified colors.
      */
     public init(trace: String, debug: String, info: String, warning: String, error: String) {
-        self.colors = [
+        colors = [
             .trace:   Theme.formatHex(trace),
             .debug:   Theme.formatHex(debug),
             .info:    Theme.formatHex(info),
