@@ -34,9 +34,9 @@ public enum Component {
     case block(() -> Any?)
 }
 
-public class Formatters {}
+open class Formatters {}
 
-public class Formatter: Formatters {
+open class Formatter: Formatters {
     /// The formatter format.
     private var format: String
     
@@ -44,13 +44,13 @@ public class Formatter: Formatters {
     private var components: [Component]
     
     /// The date formatter.
-    fileprivate let dateFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
     
     /// The formatter logger.
-    internal weak var logger: Logger!
+    weak var logger: Logger!
     
     /// The formatter textual representation.
-    internal var description: String {
+    var description: String {
         return String(format: format, arguments: components.map { (component: Component) -> CVarArg in
             return String(describing: component).uppercased()
         })
@@ -96,7 +96,7 @@ public class Formatter: Formatters {
      
      - returns: A formatted string.
      */
-    internal func format(level: Level, items: [Any], separator: String, terminator: String, file: String, line: Int, column: Int, function: String, date: Date) -> String {
+    func format(level: Level, items: [Any], separator: String, terminator: String, file: String, line: Int, column: Int, function: String, date: Date) -> String {
         let arguments = components.map { (component: Component) -> CVarArg in
             switch component {
             case .date(let dateFormat):

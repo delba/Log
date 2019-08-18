@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-internal extension String {
+extension String {
     /// The last path component of the receiver.
     var lastPathComponent: String {
         return NSString(string: self).lastPathComponent

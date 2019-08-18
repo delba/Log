@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-internal class Benchmarker {
+class Benchmarker {
     typealias Result = (
         description: String?,
         average: Double,

@@ -22,14 +22,14 @@
 // SOFTWARE.
 //
 
-public class Themes {}
+open class Themes {}
 
-public class Theme: Themes {
+open class Theme: Themes {
     /// The theme colors.
-    internal var colors: [Level: String]
+    var colors: [Level: String]
     
     /// The theme textual representation.
-    internal var description: String {
+    var description: String {
         return colors.keys.sorted().map {
             $0.description.withColor(colors[$0]!)
         }.joined(separator: " ")

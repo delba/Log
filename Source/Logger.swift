@@ -44,26 +44,26 @@ public func <(x: Level, y: Level) -> Bool {
 
 open class Logger {
     /// The logger state.
-    public var enabled: Bool = true
+    open var enabled: Bool = true
     
     /// The logger formatter.
-    public var formatter: Formatter {
+    open var formatter: Formatter {
         didSet { formatter.logger = self }
     }
     
     /// The logger theme.
-    public var theme: Theme?
+    open var theme: Theme?
     
     /// The minimum level of severity.
-    public var minLevel: Level
+    open var minLevel: Level
     
     /// The logger format.
-    public var format: String {
+    open var format: String {
         return formatter.description
     }
     
     /// The logger colors
-    public var colors: String {
+    open var colors: String {
         return theme?.description ?? ""
     }
     
@@ -207,7 +207,7 @@ open class Logger {
      - parameter function:    The function in which the measure happens.
      - parameter block:       The block to measure.
      */
-    public func measure(_ description: String? = nil, iterations n: Int = 10, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, block: () -> Void) {
+    open func measure(_ description: String? = nil, iterations n: Int = 10, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, block: () -> Void) {
         guard enabled && .debug >= minLevel else { return }
         
         let measure = benchmarker.measure(description, iterations: n, block: block)
