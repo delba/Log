@@ -99,9 +99,9 @@ open class Formatter: Formatters {
     func format(level: Level, items: [Any], separator: String, terminator: String, file: String, line: Int, column: Int, function: String, date: Date) -> String {
         let arguments = components.map { (component: Component) -> CVarArg in
             switch component {
-            case .date(let dateFormat):
+            case let .date(dateFormat):
                 return format(date: date, dateFormat: dateFormat)
-            case .file(let fullPath, let fileExtension):
+            case let .file(fullPath, fileExtension):
                 return format(file: file, fullPath: fullPath, fileExtension: fileExtension)
             case .function:
                 return String(function)
@@ -115,7 +115,7 @@ open class Formatter: Formatters {
                 return items.map({ String(describing: $0) }).joined(separator: separator)
             case .location:
                 return format(file: file, line: line)
-            case .block(let block):
+            case let .block(block):
                 return block().flatMap({ String(describing: $0) }) ?? ""
             }
         }
@@ -141,9 +141,9 @@ open class Formatter: Formatters {
         
         let arguments = components.map { (component: Component) -> CVarArg in
             switch component {
-            case .date(let dateFormat):
+            case let .date(dateFormat):
                 return format(date: date, dateFormat: dateFormat)
-            case .file(let fullPath, let fileExtension):
+            case let .file(fullPath, fileExtension):
                 return format(file: file, fullPath: fullPath, fileExtension: fileExtension)
             case .function:
                 return String(function)
@@ -157,7 +157,7 @@ open class Formatter: Formatters {
                 return format(average: average, relativeStandardDeviation: relativeStandardDeviation)
             case .location:
                 return format(file: file, line: line)
-            case .block(let block):
+            case let .block(block):
                 return block().flatMap({ String(describing: $0) }) ?? ""
             }
         }
