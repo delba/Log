@@ -40,7 +40,11 @@ extension String {
      
      - returns: A string colored with the specified color.
      */
-    func withColor(_ color: String) -> String {
+    func withColor(_ color: String?) -> String {
+        guard let color = color else {
+            return self
+        }
+
         return "\u{001b}[fg\(color);\(self)\u{001b}[;"
     }
 }

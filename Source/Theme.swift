@@ -31,7 +31,7 @@ open class Theme: Themes {
     /// The theme textual representation.
     var description: String {
         return colors.keys.sorted().map {
-            $0.description.withColor(colors[$0]!)
+            $0.description.withColor(colors[$0])
         }.joined(separator: " ")
     }
     
