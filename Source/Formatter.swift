@@ -47,7 +47,7 @@ open class Formatter: Formatters {
     private let dateFormatter = DateFormatter()
     
     /// The formatter logger.
-    weak var logger: Logger!
+    weak var logger: Logger?
     
     /// The formatter textual representation.
     var description: String {
@@ -223,7 +223,7 @@ private extension Formatter {
     func format(level: Level) -> String {
         let text = level.description
         
-        if let color = logger.theme?.colors[level] {
+        if let color = logger?.theme?.colors[level] {
             return text.withColor(color)
         }
         
@@ -240,7 +240,7 @@ private extension Formatter {
     func format(description: String?) -> String {
         var text = "MEASURE"
         
-        if let color = logger.theme?.colors[.debug] {
+        if let color = logger?.theme?.colors[.debug] {
             text = text.withColor(color)
         }
         
