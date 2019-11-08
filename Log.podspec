@@ -1,11 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "Log"
-  s.version      = "1.0"
+  s.version      = "2.0"
   s.license      = { :type => "MIT" }
   s.homepage     = "https://github.com/delba/Log"
   s.author       = { "Damien" => "damien@delba.io" }
   s.summary      = "An extensible logging framework for Swift"
-  s.source       = { :git => "https://github.com/delba/Log.git", :tag => "v1.0" }
+  s.source       = { :git => "https://github.com/delba/Log.git", :tag => s.version }
+  s.swift_version = '5.0'
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
