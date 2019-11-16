@@ -1,6 +1,6 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.0
 //
-// Theme.swift
+// Package.swift
 //
 // Copyright (c) 2015-2019 Damien (http://delba.io)
 //
