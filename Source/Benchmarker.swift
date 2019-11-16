@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import Foundation
+
 class Benchmarker {
     typealias Result = (
         description: String?,

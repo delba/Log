@@ -1,5 +1,6 @@
+// swift-tools-version:5.1
 //
-// Utilities.swift
+// Theme.swift
 //
 // Copyright (c) 2015-2019 Damien (http://delba.io)
 //
@@ -22,31 +23,18 @@
 // SOFTWARE.
 //
 
-import Foundation
+import PackageDescription
 
-extension String {
-    /// The last path component of the receiver.
-    var lastPathComponent: String {
-        return NSString(string: self).lastPathComponent
-    }
-
-    /// A new string made by deleting the extension from the receiver.
-    var stringByDeletingPathExtension: String {
-        return NSString(string: self).deletingPathExtension
-    }
-
-    /**
-     Returns a string colored with the specified color.
-     
-     - parameter color: The string representation of the color.
-     
-     - returns: A string colored with the specified color.
-     */
-    func withColor(_ color: String?) -> String {
-        guard let color = color else {
-            return self
-        }
-
-        return "\u{001b}[fg\(color);\(self)\u{001b}[;"
-    }
-}
+let package = Package(
+    name: "Log",
+    products: [
+        .library(
+            name: "Log",
+            targets: ["Log"]),
+    ],
+    targets: [
+        .target(
+            name: "Log",
+            path: "Source")
+    ]
+)

@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import Foundation
+
 open class Themes {}
 
 open class Theme: Themes {
